@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alarm Clock</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+        #l{
+            color: blue;
+            text-shadow: aliceblue;
+            text-decoration: !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alarm Clock</h1>
+    <div>
+        <label for="alarmTime" id="l">Set alarm time:</label>
+        <input type="time" id="alarmTime">
+        <button onclick="setAlarm()" id="b">Set Alarm</button>
+    </div>
+    <script>
+        function setAlarm() {
+            const alarmInput = document.getElementById('alarmTime');
+            const timeParts = alarmInput.value.split(':');
+            
+            const now = new Date();
+            const alarmTime = new Date(timeParts[0], timeParts[1]);
+
+            if (isNaN(alarmTime.getTime())) {
+                alert('Invalid time format. Please enter a valid time.');
+                return;
+            }
+
+            const timeToAlarm = alarmTime - now;
+
+            if (timeToAlarm <= 0) {
+                alert('The specified time has already passed. Please set a future time.');
+                return;
+            }
+
+            setTimeout(() => {
+                playAlarm();
+            }, timeToAlarm);
+
+            alert('Alarm set successfully!');
+        }
+
+        function playAlarm() {
+            alert('Wake up!');
+        }
+    </script>
+</body>
+</html>
