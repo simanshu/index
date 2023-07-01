@@ -22,8 +22,6 @@
         }
     </style>
 
-
-
 </head>
 <body>
     <!-- Heading -->
@@ -35,26 +33,24 @@
         <button onclick="setAlarm()" id="b">Set Alarm</button>
     </div>
 
-
-
-
-
     <script>
         // function
         function setAlarm() {
             const alarmInput = document.getElementById('alarmTime');
             const timeParts = alarmInput.value.split(':');
-            
+
             const now = new Date();
-            const alarmTime = new Date(timeParts[0], timeParts[1]);
-            //check time format
+            const alarmTime = new Date(now.(), now.getMonth(), now.getDate(), timeParts[0], timeParts[1], 0);
+
+            // check time format
             if (isNaN(alarmTime.getTime())) {
                 alert('Invalid time format. Please enter a valid time.');
                 return;
             }
 
             const timeToAlarm = alarmTime - now;
-            // check time valid or not
+
+            // check time validity
             if (timeToAlarm <= 0) {
                 alert('The specified time has already passed. Please set a future time.');
                 return;
