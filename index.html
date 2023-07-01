@@ -2,7 +2,12 @@
 <html>
 <head>
     <title>Alarm Clock</title>
+
+    <!-- use to bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+
+
+    <!-- CSS file -->
     <style>
         body {
             display: flex;
@@ -16,29 +21,40 @@
             text-decoration: !important;
         }
     </style>
+
+
+
 </head>
 <body>
+    <!-- Heading -->
     <h1>Alarm Clock</h1>
     <div>
+        <!-- Alram input field label and button -->
         <label for="alarmTime" id="l">Set alarm time:</label>
         <input type="time" id="alarmTime">
         <button onclick="setAlarm()" id="b">Set Alarm</button>
     </div>
+
+
+
+
+
     <script>
+        // function
         function setAlarm() {
             const alarmInput = document.getElementById('alarmTime');
             const timeParts = alarmInput.value.split(':');
             
             const now = new Date();
             const alarmTime = new Date(timeParts[0], timeParts[1]);
-
+            //check time format
             if (isNaN(alarmTime.getTime())) {
                 alert('Invalid time format. Please enter a valid time.');
                 return;
             }
 
             const timeToAlarm = alarmTime - now;
-
+            // check time valid or not
             if (timeToAlarm <= 0) {
                 alert('The specified time has already passed. Please set a future time.');
                 return;
